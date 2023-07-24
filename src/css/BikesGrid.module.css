@@ -1,0 +1,39 @@
+.btn_reserve {
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  color: rgba(255, 255, 255, 0.741);
+  margin-top: 280px;
+  font-weight: bold;
+  font-size: large;
+  background-color: teal;
+  border-radius: 8px;
+  width: 250px;
+  height: 60px;
+}
+.bike_destripton {
+  text-align: center;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.741);
+  margin-top: 30px;
+}
+.datepicker__div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 110px;
+  align-items: center;
+}
+.btn_close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.741);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  padding: 5px;
+}
+.price {
+  color: rgba(255, 255, 255, 0.741);
+}
