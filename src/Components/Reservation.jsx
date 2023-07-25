@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Flex,
@@ -46,6 +46,14 @@ const Reservation = () => {
     //localStorage.removeItem("reservationData");
   }, []);
 
+  // Formatuj daty z użyciem toLocaleDateString()
+  const formattedStartDate = startDate
+    ? new Date(startDate).toLocaleDateString()
+    : "";
+  const formattedEndDate = endDate
+    ? new Date(endDate).toLocaleDateString()
+    : "";
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Tutaj możesz obsłużyć logikę wysłania formularza rezerwacji
@@ -56,8 +64,8 @@ const Reservation = () => {
       <Text fontSize="2xl" fontWeight="bold" mb="4">
         Reservation Page
       </Text>
-      <Text>Data rozpoczęcia: {startDate}</Text>
-      <Text>Data zakończenia: {endDate}</Text>
+      <Text>Data rozpoczęcia: {formattedStartDate}</Text>
+      <Text>Data zakończenia: {formattedEndDate}</Text>
       <Text>Okres: {period}</Text>
       <Text>Rower: {name}</Text>
       <Text>Cena za 1 dzień: {price}zł</Text>

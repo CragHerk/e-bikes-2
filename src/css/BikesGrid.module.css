@@ -12,7 +12,6 @@
   height: 60px;
 }
 .bike_destripton {
-  text-align: center;
   font-size: 24px;
   color: rgba(255, 255, 255, 0.741);
   margin-top: 30px;
@@ -21,7 +20,6 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 110px;
-  align-items: center;
 }
 .btn_close {
   position: absolute;
@@ -36,4 +34,12 @@
 }
 .price {
   color: rgba(255, 255, 255, 0.741);
+}
+.bike_name {
+  text-align: center;
+  font-size: 24px;
+}
+.close_button {
+  position: absolute;
+  right: 8px;
 }

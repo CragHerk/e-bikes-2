@@ -1,86 +1,16 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import { Alert, AlertIcon, Box, Button } from "@chakra-ui/react";
+import React, { useState, useEffect } from "react";
+import { Alert, AlertIcon, CloseButton } from "@chakra-ui/react";
 import calculatePeriod from "../utils/calculatePeriod";
 import "react-datepicker/dist/react-datepicker.css";
-import Carousel from "react-multi-carousel";
+import StyledCarousel from "../styled/styledCarousel";
+import StyledDatePicker from "../styled/styledDatePicker";
 import "react-multi-carousel/lib/styles.css";
-import styled from "styled-components";
+import bikeList from "../data/bikelist";
 import styles from "../css/BikesGrid.module.css";
 import { FaTimes } from "react-icons/fa";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const StyledCarousel = styled(Carousel)`
-  .react-multiple-carousel__arrow--left {
-    left: 0;
-  }
-
-  .react-multiple-carousel__arrow--right {
-    right: 0;
-  }
-
-  .carousel-item {
-    position: relative;
-    height: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid grey;
-    transition: background-color 0.3s ease-in-out;
-  }
-
-  .carousel-item.active {
-    background-color: grey;
-    position: relative;
-  }
-
-  .btn-reserve {
-    position: absolute;
-    bottom: 20px;
-    background-color: white;
-
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-
-  .carousel-item.active .btn-reserve {
-    background-color: transparent;
-    color: white;
-  }
-`;
-const StyledDatePicker = styled(DatePicker)`
-  margin-bottom: 20px;
-  height: 30px;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: rgba(255, 255, 255, 0.741);
-  ::placeholder {
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    outline: none;
-  }
-  &:focus {
-    box-shadow: none;
-  }
-  &::after {
-    display: none;
-  }
-`;
-
 const BikesGrid = () => {
-  const bikeList = [
-    { name: "bike#1", price: 100 },
-    { name: "bike#2", price: 200 },
-    { name: "bike#3", price: 300 },
-    { name: "bike#4", price: 400 },
-    { name: "bike#5", price: 500 },
-    { name: "bike#6", price: 600 },
-  ];
-
   const responsiveSettings = {
     desktop: {
       breakpoint: { max: 3000, min: 1200 },
@@ -101,9 +31,17 @@ const BikesGrid = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  useEffect(() => {
+    let timeout;
+    if (showAlert) {
+      timeout = setTimeout(() => setShowAlert(false), 5000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [showAlert]);
 
   const handleCarouselItemClick = (index) => {
     setActiveIndex(index);
@@ -128,19 +66,11 @@ const BikesGrid = () => {
 
   const handleReservationSubmit = (event) => {
     event.preventDefault();
-    if (!startDate && !endDate) {
+    if (!startDate || !endDate) {
       setShowAlert(true);
       setAlertMessage(
         "Wybierz datę rozpoczęcia i datę zakończenia rezerwacji!"
       );
-      return;
-    } else if (!startDate) {
-      setShowAlert(true);
-      setAlertMessage("Wybierz datę rozpoczęcia rezerwacji!");
-      return;
-    } else if (!endDate) {
-      setShowAlert(true);
-      setAlertMessage("Wybierz datę zakończenia rezerwacji!");
       return;
     }
 
@@ -175,9 +105,7 @@ const BikesGrid = () => {
           <AlertIcon />
           {alertMessage}
           <CloseButton
-            position="fixed"
-            right="8px"
-            top="8px"
+            className={styles.close_button}
             onClick={() => setShowAlert(false)}
           />
         </Alert>
@@ -236,9 +164,7 @@ const BikesGrid = () => {
                 </button>
               </form>
             ) : (
-              <p style={{ textAlign: "center", fontSize: "24px" }}>
-                {bike.name}
-              </p>
+              <p className={styles.bike_name}>{bike.name}</p>
             )}
           </div>
         ))}
