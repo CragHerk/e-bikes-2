@@ -1,6 +1,8 @@
-import React from "react";
-import { Box, Text } from "@chakra-ui/react";
+import React, { Fragment } from "react";
+import { Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import styles from "../css/Header.module.css";
+import AnimatedWheel from "./AnimatedWheel";
 
 const Header = () => {
   const containerVariants = {
@@ -15,15 +17,7 @@ const Header = () => {
 
   return (
     <motion.div
-      style={{
-        height: "50vh",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: "355px",
-      }}
+      className={styles.header}
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -34,6 +28,7 @@ const Header = () => {
       <motion.div variants={textVariants}>
         <Text fontSize="lg">Wybierz coś dla siebie</Text>
       </motion.div>
+      <AnimatedWheel />
     </motion.div>
   );
 };
