@@ -22,7 +22,7 @@ const Header = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: "300px",
+        marginBottom: "355px",
       }}
       initial="hidden"
       animate="visible"
