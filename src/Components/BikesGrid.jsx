@@ -9,6 +9,7 @@ import bikeList from "../data/bikelist";
 import styles from "../css/BikesGrid.module.css";
 import { FaTimes } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const BikesGrid = () => {
   const responsiveSettings = {
@@ -27,6 +28,7 @@ const BikesGrid = () => {
   };
 
   const customTransition = "transform 500ms ease-in-out";
+  const navigate = useNavigate();
 
   const [activeIndex, setActiveIndex] = useState(null);
   const [startDate, setStartDate] = useState(null);
@@ -95,7 +97,9 @@ const BikesGrid = () => {
     setStartDate(null);
     setEndDate(null);
 
-    window.location.href = "/e-bikes-2/reservation";
+    //window.location.href = "/e-bikes-2/reservation";
+
+    navigate("/reservation");
   };
 
   return (
