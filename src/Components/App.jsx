@@ -5,7 +5,6 @@ import BikesGrid from "./BikesGrid";
 import AboutUs from "./AboutUs";
 import Footer from "./Footer";
 import Reservation from "./Reservation";
-import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (

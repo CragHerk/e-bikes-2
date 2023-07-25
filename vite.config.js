@@ -9,5 +9,5 @@ export default defineConfig({
       usePolling: true,
     },
   },
-  base: "/e-bikes-2",
+  base: "/",
 });
